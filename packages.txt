@@ -6,3 +6,4 @@ solara-openbox
 solara-xorg
 solara-lxqt-desktop
 solara-terminal
+solara-gui-libs
