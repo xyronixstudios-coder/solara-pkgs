@@ -2,3 +2,7 @@ cowsay:1.0:Xyronix Studios Resmi Cowsay Paketi
 solara-fetch
 neofetch
 solara-openbox
+solara-openbox
+solara-xorg
+solara-lxqt-desktop
+solara-terminal
