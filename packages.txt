@@ -1,4 +1,4 @@
 cowsay:1.0:Xyronix Studios Resmi Cowsay Paketi
 solara-fetch
 neofetch
-solara-gui-config
+solara-openbox
