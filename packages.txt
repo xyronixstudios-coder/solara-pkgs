@@ -7,3 +7,4 @@ solara-xorg
 solara-lxqt-desktop
 solara-terminal
 solara-gui-libs
+solpad:1.0:Metin düzenleyici
