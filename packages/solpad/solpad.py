@@ -12,36 +12,34 @@ def main():
     
     if os.path.exists(filename):
         with open(filename, "r", encoding="utf-8") as f:
-            lines = f.readlines()
+            lines = [line.rstrip('\n') for line in f.readlines()]
     
-    print(f"=== SOLPAD v1.0 | Düzenlenen: {filename} ===")
-    print("Komutlar: :w (kaydet), :q (çık), :wq (kaydet ve çık), :add <metin> (satır ekle), :view (göster)\n")
+    print(f"=== SOLPAD v2.0 [{filename}] ===")
+    print("Metni doğrudan yaz. Kaydetmek için sadece bir satıra ':w', çıkmak için ':q' yaz.")
+    print("-" * 40)
     
     for i, line in enumerate(lines):
-        print(f"{i+1:3d} | {line.rstrip()}")
-
+        print(f"{i+1}: {line}")
+        
+    print("-" * 40)
+    print("Yeni satırları ekle (Bitince kaydetmek için ':w', çıkmak için ':q' yaz):")
+    
     while True:
         try:
-            cmd = input("solpad> ")
-            if cmd == ":q":
+            line = input()
+            if line == ":w":
+                with open(filename, "w", encoding="utf-8") as f:
+                    f.write("\n".join(lines) + "\n")
+                print(f"[✓] Başarıyla kaydedildi: {filename}")
+            elif line == ":q":
                 break
-            elif cmd == ":w":
+            elif line == ":wq":
                 with open(filename, "w", encoding="utf-8") as f:
-                    f.writelines(lines)
-                print(f"[✓] Kaydedildi: {filename}")
-            elif cmd == ":wq":
-                with open(filename, "w", encoding="utf-8") as f:
-                    f.writelines(lines)
+                    f.write("\n".join(lines) + "\n")
                 print(f"[✓] Kaydedildi ve çıkılıyor: {filename}")
                 break
-            elif cmd.startswith(":add "):
-                lines.append(cmd[5:] + "\n")
-                print(f"Eklendi (Toplam: {len(lines)} satır)")
-            elif cmd == ":view":
-                for i, line in enumerate(lines):
-                    print(f"{i+1:3d} | {line.rstrip()}")
             else:
-                print("Geçersiz komut! (:w, :q, :wq, :add <metin>, :view)")
+                lines.append(line)
         except KeyboardInterrupt:
             print("\nÇıkış yapıldı.")
             break
